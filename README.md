@@ -16,6 +16,12 @@ Once this is done, quit the mySQL shell and then write node index to start the a
 
 *Please feel free to change the database name, the tables and the seeds as needed. Just make sure the database name is also changed in the connection.js file.
 
+## Shout Outs
+- https://tableplus.com/blog/2018/08/mysql-how-to-temporarily-disable-foreign-key-constraints.html
+
+- https://medium.com/fullstackwebdev/a-guide-to-mysql-with-node-js-fc4f6abce33b
+
+
 ## User Story
 - AS A business owner
 - I WANT to be able to view and manage the departments, roles, and employees in my company
@@ -50,5 +56,3 @@ Once this is done, quit the mySQL shell and then write node index to start the a
 ## Video Walkthrough
 
 ## Questions
-
-
