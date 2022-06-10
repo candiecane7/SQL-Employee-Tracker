@@ -12,9 +12,8 @@ const viewDepts = function () {
 };
 
 const viewRoles = function () {
-    let roles = "roles";
     db.query(
-        `SELECT * FROM ${roles};`, (err, res) => {
+        `SELECT roles.*, departments.name AS department_name FROM roles LEFT JOIN departments ON roles.department_id = departments.id;`, (err, res) => {
             if (err) throw err;
             console.table(res);
         }
@@ -22,9 +21,12 @@ const viewRoles = function () {
 };
 
 const viewEmployees = function () {
-    let employees = "employees";
     db.query(
-        `SELECT * FROM ${employees};`, (err, res) => {
+        `SELECT employees.*, roles.title AS role_title, departments.name AS department_name, roles.salary AS salary, manager.first_name AS manager_name
+        FROM employees
+        JOIN employees manager ON employees.manager_id = manager.id 
+        LEFT JOIN roles ON employees.role_id = roles.id 
+        LEFT JOIN departments ON roles.department_id = departments.id;`, (err, res) => {
             if (err) throw err;
             console.table(res);
         }
@@ -152,8 +154,33 @@ async function updateEmployeeRole (req,res){
     let roleChoices = roles.map(role => ({id:role.id, name:role.title }));
     console.log(employeeChoices);
     console.log(roleChoices);
-}
 
+    inquirer
+    .prompt([
+        {
+            type:'list',
+            name:'employeeChoice',
+            message: 'Please choose which employee to update',
+            choices: employeeChoices
+        },
+        {
+            type: 'list',
+            name: 'roleChoice',
+            message: 'Please choose new role for employee',
+            choices: roleChoices
+        }
+    ])
+    .then(answers => {
+        let newRole = answers.roleChoice;
+        let employee = answers.employeeChoice;
+        let employeeId = employeeChoices.filter(emp => emp.name === employee)[0].id;
+        let roleId = roleChoices.filter(role => role.name === newRole)[0].id;
+        db.query(`UPDATE employees SET role_id = ${roleId} WHERE id = ${employeeId};`, (err, res)=>{
+            if(err) throw err;
+            console.log(`Updated role to ${newRole} for ${employee}`);
+        })
+    });
+};
 
 
 module.exports = {

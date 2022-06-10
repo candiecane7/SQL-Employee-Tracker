@@ -1,55 +1,64 @@
-//UPDATE MANAGER ID - not working
+
 //Don't forget to make sure you can go back to initial question after choosing what you want to do... 
 const db = require("./db/connection");
 const inquirer = require("inquirer");
 const { viewDepts, viewRoles, viewEmployees, addDept, addRole, addEmployee, updateEmployeeRole } = require('./src/questions');
-// let deptChoices = require('');
+
 
 db.connect(err => {
     if (err) throw err;
     console.log('Database connected.');
-    startQs();
-})
+});
 
-//inquirer prompts question: What would you like to do?
-//answers: view all deparments, view all roles, view all employees, add a department, add a role, add an employee, update employee role
+let timeout;
+function timer(){
+    timeout = setTimeout(startQs, 6000);
+}
+
 const startQs = function () {
     inquirer
         .prompt({
             type: "list",
             name: "options",
             message: "What would you like to do?",
-            choices: ["View all Departments", "View all Roles", "View all Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
+            choices: ["View all Departments", "View all Roles", "View all Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role", "Exit"]
         }).then(answer => {
             if (answer.options === "View all Departments") {
                 viewDepts();
-                // startQs();
+                timer();
             }
             if (answer.options === "View all Roles") {
                 viewRoles();
-                // startQs();
+                timer();
             }
             if (answer.options === "View all Employees") {
                 viewEmployees();
-                // startQs();
+                timer();
             }
             if (answer.options === "Add a department") {
                addDept();
-            //    startQs();
+                timer();
             }
             if (answer.options === "Add a role") {
                 addRole();
-                // startQs();
+                timer();
             }
             if(answer.options === "Add an employee"){
                 addEmployee();
+                timer();
             }
             if(answer.options === "Update an employee role"){
                 updateEmployeeRole();
+                timer();
+            }
+            if(answer.options === "Exit"){
+                process.exit();
             }
            
         });
 };
+
+startQs();
        
 
 
