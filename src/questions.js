@@ -131,10 +131,11 @@ async function addEmployee (req, res) {
 }
 ])
 .then(answers => {
-    console.log(answers);
-    // let newRole = answers.addRole;
-    // let roleId = roleChoices.filter(roles => roles.name == newRole )[0].id;
-    // console.log(roleId);
+    let newRole = answers.addRole;
+    let roleId = roleChoices.filter(roles => roles.name == newRole )[0].id;
+    let newManager = answers.addManager;
+    let managerID = managerChoices.filter(mans => mans.name == newManager)[0].id;
+    console.log(managerID);
     // console.log(`Added ${answers.firstName, answers.lastName} to the database`);
 })
 }
