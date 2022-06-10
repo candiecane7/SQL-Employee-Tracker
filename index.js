@@ -2,7 +2,7 @@
 //Don't forget to make sure you can go back to initial question after choosing what you want to do... 
 const db = require("./db/connection");
 const inquirer = require("inquirer");
-const { viewDepts, viewRoles, viewEmployees, addDept, addRole, addEmployee } = require('./src/questions');
+const { viewDepts, viewRoles, viewEmployees, addDept, addRole, addEmployee, updateEmployeeRole } = require('./src/questions');
 // let deptChoices = require('');
 
 db.connect(err => {
@@ -43,6 +43,9 @@ const startQs = function () {
             }
             if(answer.options === "Add an employee"){
                 addEmployee();
+            }
+            if(answer.options === "Update an employee role"){
+                updateEmployeeRole();
             }
            
         });
