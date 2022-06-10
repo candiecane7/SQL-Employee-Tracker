@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 require('dotenv').config();
+const util = require("util"); 
 
 const db = mysql.createConnection(
     {
@@ -8,8 +9,13 @@ const db = mysql.createConnection(
         user: process.env.USER,
         //Your MYSQL password,
         password: process.env.PASS,
-        database: 'election'
+        database: 'dental'
     }
 );
 
+db.query = util.promisify(db.query).bind(db);
+
 module.exports = db;
+
+
+

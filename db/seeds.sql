@@ -15,15 +15,15 @@ VALUES
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
 ("Harry", "Potter", 1, NULL),
-("Ron", "Weasley", 2, 3),
-("Hermione", "Granger", 1, 3),
 ("Ginny", "Weasley", 4, 1),
-("Draco", "Malfoy", 2, 3),
-("Neville", "Longbottom", 2, 3),
-("Luna", "Lovegood", 2, 3),
-("Alastor", "Moody", 2, 3),
-("Dudley", "Dursley", 3, 3),
-("Peter", "Pettigrew", 3, 3),
-("Dolores" "Umbrdige", 3, 3),
-("Severus", "Snape", 5, 3),
-("Bellatrix", "Lestrange", 5, 3);
+("Ron", "Weasley", 2, 2),
+("Hermione", "Granger", 1, 2),
+("Draco", "Malfoy", 2, 2),
+("Neville", "Longbottom", 2, 2),
+("Luna", "Lovegood", 2, 2),
+("Alastor", "Moody", 2, 2),
+("Dudley", "Dursley", 3, 2),
+("Peter", "Pettigrew", 3, 2),
+("Dolores", "Umbrdige", 3, 2),
+("Severus", "Snape", 5, 2),
+("Bellatrix", "Lestrange", 5, 2);
