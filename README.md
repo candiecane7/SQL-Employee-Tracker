@@ -54,5 +54,7 @@ Once this is done, quit the mySQL shell and then write node index to start the a
 - Dotenv
 
 ## Video Walkthrough
+[Click me](https://drive.google.com/file/d/199LgrPY6epU-RIevDITP96oMvc1tIk4H/view) to watch a walkthrough demonstration of the application.
 
 ## Questions
+Any questions about this application or questions in general please <a href="mailto:hall.candice@outlook.com">email me</a>

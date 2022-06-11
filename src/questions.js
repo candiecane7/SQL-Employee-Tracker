@@ -43,7 +43,6 @@ const addDept = function () {
         .then(answer => {
             let deparments = "departments";
             let deptName = answer.deptName;
-            console.log(deptName);
             db.query(
                 `INSERT INTO ${deparments} (name)
      VALUES ('${deptName}');`, (err, res) => {
@@ -57,13 +56,6 @@ const addDept = function () {
 async function addRole(req, res) {
     let queryString = `SELECT * FROM departments`;
     let deptChoices = await db.query(queryString).catch(err => res.status(500).json(err));
-
-    // let deptChoices = result.map(department => {
-    //     return ({ name: department['name'],
-    //         id: department['id']
-    //     })
-    // });
-    console.log(deptChoices);
 
     inquirer
         .prompt([
@@ -106,8 +98,7 @@ async function addEmployee(req, res) {
     let managers = await db.query(queryString2).catch(err => res.status(500).json(err));
     let roleChoices = roles.map((role) => ({ id: role.id, name: role.title }));
     let managerChoices = managers.map((manager) => ({ id: manager.id, name: manager.first_name + ' ' + manager.last_name }));
-    // console.log(roleChoices);
-    // console.log(managerChoices);
+
     inquirer
         .prompt([{
             type: "input",
@@ -152,8 +143,6 @@ async function updateEmployeeRole (req,res){
     let roles = await db.query(`SELECT * FROM roles`).catch(err => res.status(500).json(err));
     let employeeChoices = employees.map(employee => ({id:employee.id, name:employee.first_name + ' ' + employee.last_name}));
     let roleChoices = roles.map(role => ({id:role.id, name:role.title }));
-    console.log(employeeChoices);
-    console.log(roleChoices);
 
     inquirer
     .prompt([

@@ -1,5 +1,4 @@
 
-//Don't forget to make sure you can go back to initial question after choosing what you want to do... 
 const db = require("./db/connection");
 const inquirer = require("inquirer");
 const { viewDepts, viewRoles, viewEmployees, addDept, addRole, addEmployee, updateEmployeeRole } = require('./src/questions');
@@ -12,7 +11,7 @@ db.connect(err => {
 
 let timeout;
 function timer(){
-    timeout = setTimeout(startQs, 6000);
+    timeout = setTimeout(startQs, 10000);
 }
 
 const startQs = function () {
@@ -59,29 +58,3 @@ const startQs = function () {
 };
 
 startQs();
-       
-
-
-
-
-
-
-
-
-
-
-
-// .prompt({
-//     type: "list",
-//     name: "updateEmployee",
-//     message: "Which employee would you like to update?",
-//     choices: employeeChoices
-// },
-// {
-//     type: "list",
-//     name: "roles",
-//     message: "Which role would you like to assign?",
-//     choices: roleChoices
-// }).then(answers =>{
-//     console.log(`${answers.updateEmployee}'s role has been updated to ${answers.roles} in the database`)
-// })
